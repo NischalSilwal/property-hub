@@ -38,12 +38,12 @@ export function Signup() {
                     <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
                         <div>
                             <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-                                Full Name
+                                Full Name *
                             </label>
                             <input
                                 type="text"
                                 id="name"
-                                placeholder="John Doe"
+                                placeholder="Enter your full name"
                                 className={`w-full px-4 py-3 border rounded-lg outline-none transition-all ${errors.name ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-2 focus:ring-purple-500 focus:border-purple-500'}`}
                                 {...register('name', { required: 'Name is required' })}
                             />
@@ -52,12 +52,12 @@ export function Signup() {
 
                         <div>
                             <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                                Email Address
+                                Email Address *
                             </label>
                             <input
                                 type="email"
                                 id="email"
-                                placeholder="your@email.com"
+                                placeholder="Enter your email"
                                 className={`w-full px-4 py-3 border rounded-lg outline-none transition-all ${errors.email ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-2 focus:ring-purple-500 focus:border-purple-500'}`}
                                 {...register('email', { required: 'Email is required' })}
                             />
@@ -66,13 +66,13 @@ export function Signup() {
 
                         <div>
                             <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
-                                Password
+                                Password *
                             </label>
                             <div className="relative">
                                 <input
                                     type={showPassword ? 'text' : 'password'}
                                     id="password"
-                                    placeholder="Min 6 characters"
+                                    placeholder="Enter your password"
                                     className={`w-full px-4 py-3 pr-12 border rounded-lg outline-none transition-all ${errors.password ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-2 focus:ring-purple-500 focus:border-purple-500'}`}
                                     {...register('password', { required: 'Password is required', minLength: { value: 6, message: 'Password must be at least 6 characters' } })}
                                 />
@@ -101,11 +101,11 @@ export function Signup() {
                             disabled={isSubmitting}
                             className="w-full py-3 px-4 bg-purple-800 hover:bg-purple-700 disabled:bg-purple-400 text-white font-semibold rounded-lg transition-colors"
                         >
-                            {isSubmitting ? 'Creating account...' : 'Create Account'}
+                            {isSubmitting ? 'Signing up...' : 'Sign up'}
                         </button>
                     </form>
 
-                    <p className="mt-6 text-center text-gray-500">
+                    <p className="mt-6 text-center text-gray-500 font-medium text-sm">
                         Already have an account?{' '}
                         <Link to="/login" className="text-purple-800 hover:text-purple-700 font-medium">
                             Sign in
