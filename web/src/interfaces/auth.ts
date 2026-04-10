@@ -29,3 +29,9 @@ export interface RegisterInput {
 export interface RegisterResponse {
     message: string;
 }
+
+export interface SignupFormData {
+    name: string;
+    email: string;
+    password: string;
+}

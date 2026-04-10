@@ -13,17 +13,12 @@ export class FavoriteController {
             }
 
             const propertyIds = favorites.map(f => f.propertyId);
-            const allProperties = await propertyRepository.findAll();
+            const allProperties = await propertyRepository.findAllWithCounts(userId);
             const favoritedProperties = allProperties.filter(p => 
                 propertyIds.includes(p.id)
             );
 
-            const result = favoritedProperties.map(p => ({
-                ...p,
-                isFavorited: true
-            }));
-
-            res.json(result);
+            res.json(favoritedProperties);
         } catch (error) {
             next(error);
         }
