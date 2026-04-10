@@ -28,6 +28,17 @@ export function Navbar() {
                             >
                                 Properties
                             </Link>
+                            {isAuthenticated && (
+                                <Link
+                                    to="/favorites"
+                                    className={`px-3 py-2 rounded-lg transition-colors ${location.pathname === '/favorites'
+                                            ? 'text-purple-600 bg-purple-50'
+                                            : 'text-gray-600 hover:text-purple-600 hover:bg-purple-50'
+                                        }`}
+                                >
+                                    Favorites
+                                </Link>
+                            )}
                         </nav>
                     </div>
 

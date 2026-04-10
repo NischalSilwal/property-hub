@@ -56,9 +56,8 @@ export function PropertyCard({ property, onFavoriteToggle }: PropertyCardProps) 
 
         setIsFavoriting(true);
         const previousState = isFavorited;
-        const newState = !previousState;
 
-        setIsFavorited(newState);
+        setIsFavorited(!isFavorited);
 
         try {
             const response = await propertyService.toggleFavorite(property.id);

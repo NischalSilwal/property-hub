@@ -1,7 +1,5 @@
 import { api } from './api';
-import type { Property, CreatePropertyInput } from '../interfaces';
-import type { LikeResponse } from '../interfaces/like';
-import type { FavoriteResponse } from '../interfaces/favorite';
+import type { Property, CreatePropertyInput, LikeResponse, FavoriteResponse } from '../interfaces';
 
 class PropertyService {
     async getAll(): Promise<Property[]> {
@@ -25,23 +23,23 @@ class PropertyService {
     }
 
     async getFavorites(): Promise<Property[]> {
-        return api.get<Property[]>('/favourites/');
+        return api.get<Property[]>('/favorites/');
     }
 
-    async toggleFavorite(propertyId: number): Promise<{ isFavorited: boolean }> {
-        return api.post<{ isFavorited: boolean }>('/favorites/toggle', { propertyId });
+    async toggleFavorite(propertyId: number): Promise<FavoriteResponse> {
+        return api.post<FavoriteResponse>('/favorites/toggle', { propertyId });
     }
 
     async addFavorite(propertyId: number): Promise<void> {
-        await api.post('/favourites/', { propertyId });
+        await api.post('/favorites/toggle', { propertyId });
     }
 
     async removeFavorite(propertyId: number): Promise<void> {
-        await api.delete(`/favourites/${propertyId}`);
+        await api.delete(`/favorites/${propertyId}`);
     }
 
     async checkFavorite(propertyId: number): Promise<FavoriteResponse> {
-        return api.get<FavoriteResponse>(`/favourites/${propertyId}/check`);
+        return api.get<FavoriteResponse>(`/favorites/${propertyId}/check`);
     }
 }
 

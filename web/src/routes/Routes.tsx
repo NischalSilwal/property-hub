@@ -3,7 +3,26 @@ import { AuthProvider, useAuth } from '../store/AuthContext';
 import { Login } from '../pages/Login';
 import { Signup } from '../pages/Signup';
 import { PropertyListings } from '../pages/PropertyListings';
+import { Favorites } from '../pages/Favorites';
 import { Navbar } from '../components/Navbar';
+
+function ProtectedRoute({ children }: { children: React.ReactNode }) {
+    const { isAuthenticated, isLoading } = useAuth();
+
+    if (isLoading) {
+        return (
+            <div className="min-h-screen flex items-center justify-center">
+                <div className="animate-spin rounded-full h-12 w-12 border-4 border-purple-600 border-t-transparent"></div>
+            </div>
+        );
+    }
+
+    if (!isAuthenticated) {
+        return <Navigate to="/login" replace />;
+    }
+
+    return <>{children}</>;
+}
 
 function PublicRoute({ children }: { children: React.ReactNode }) {
     const { isAuthenticated, isLoading } = useAuth();
@@ -30,6 +49,14 @@ export function AppRoutes() {
                 <Navbar />
                 <Routes>
                     <Route path="/properties" element={<PropertyListings />} />
+                    <Route
+                        path="/favorites"
+                        element={
+                            <ProtectedRoute>
+                                <Favorites />
+                            </ProtectedRoute>
+                        }
+                    />
                     <Route
                         path="/login"
                         element={
