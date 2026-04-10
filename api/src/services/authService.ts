@@ -1,4 +1,4 @@
-import { UserModel } from '../models/userModel';
+import { userRepository } from '../repositories/UserRepository';
 import { hashPassword, comparePassword } from '../utils/password';
 import { generateTokenPair, verifyRefreshToken } from '../utils/jwt';
 import { RegisterInput, LoginInput } from '../validations/auth';
@@ -12,20 +12,20 @@ export class AuthError extends Error {
 
 export class AuthService {
     async register(data: RegisterInput) {
-        const emailExists = await UserModel.existsByEmail(data.email);
+        const emailExists = await userRepository.existsByEmail(data.email);
         if (emailExists) {
             throw new AuthError('Email already registered', 409);
         }
 
         const passwordHash = await hashPassword(data.password);
 
-        const userId = await UserModel.create(
+        const userId = await userRepository.create(
             data.name,
             data.email,
             passwordHash
         );
 
-        const user = await UserModel.findById(userId);
+        const user = await userRepository.findById(userId);
         if (!user) {
             throw new AuthError('Failed to create user', 500);
         }
@@ -42,12 +42,12 @@ export class AuthService {
     }
 
     async login(data: LoginInput) {
-        const user = await UserModel.findByEmail(data.email);
+        const user = await userRepository.findByEmail(data.email);
         if (!user) {
             throw new AuthError('Invalid email or password', 401);
         }
 
-        const isPasswordValid = await comparePassword(data.password, user.password_hash);
+        const isPasswordValid = await comparePassword(data.password, user.passwordHash);
         if (!isPasswordValid) {
             throw new AuthError('Invalid email or password', 401);
         }
@@ -57,7 +57,7 @@ export class AuthService {
             email: user.email,
         });
 
-        const { password_hash, ...userPublic } = user;
+        const { passwordHash, ...userPublic } = user;
 
         return {
             user: userPublic,
@@ -69,7 +69,7 @@ export class AuthService {
         try {
             const payload = verifyRefreshToken(refreshToken);
 
-            const user = await UserModel.findById(payload.id);
+            const user = await userRepository.findById(payload.id);
             if (!user) {
                 throw new AuthError('User not found', 401);
             }
@@ -90,7 +90,7 @@ export class AuthService {
     }
 
     async getMe(userId: number) {
-        const user = await UserModel.findById(userId);
+        const user = await userRepository.findById(userId);
         if (!user) {
             throw new AuthError('User not found', 404);
         }
