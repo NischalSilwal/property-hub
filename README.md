@@ -34,24 +34,38 @@ A full-stack real estate property management web application built with modern t
 
 ```
 property-hub/
-├── api/                 # Backend application
+├── api/                              # Backend application
 │   ├── src/
-│   │   ├── controllers/
-│   │   ├── middleware/
-│   │   ├── routes/
-│   │   ├── db/
-│   │   └── server.ts
+│   │   ├── config/                   # Environment & database config
+│   │   ├── controllers/             # Request handlers
+│   │   ├── db/                      # Database setup & schemas
+│   │   ├── interfaces/              # TypeScript interfaces
+│   │   ├── middleware/              # Express middleware
+│   │   ├── repositories/            # Data access layer
+│   │   ├── routes/                  # API routes
+│   │   ├── services/                # Business logic
+│   │   ├── types/                   # TypeScript type definitions
+│   │   ├── utils/                   # Utility functions
+│   │   ├── validations/             # Zod validation schemas
+│   │   ├── app.ts                   # Express app setup
+│   │   └── server.ts                # Server entry point
 │   ├── package.json
-│   └── tsconfig.json
+│   ├── tsconfig.json
+│   └── docker-compose.yml
 │
-├── web/                 # Frontend application
+├── web/                              # Frontend application
 │   ├── src/
-│   │   ├── components/
-│   │   ├── pages/
-│   │   ├── hooks/
-│   │   └── App.tsx
+│   │   ├── components/              # Reusable UI components
+│   │   ├── interfaces/             # TypeScript interfaces
+│   │   ├── pages/                   # Page components
+│   │   ├── routes/                  # React Router setup
+│   │   ├── services/                # API service functions
+│   │   ├── store/                   # React Context
+│   │   ├── App.tsx                  # Main app component
+│   │   └── main.tsx                 # Entry point
 │   ├── package.json
-│   └── vite.config.ts
+│   ├── vite.config.ts
+│   └── tailwind.config.js
 │
 └── README.md
 ```
