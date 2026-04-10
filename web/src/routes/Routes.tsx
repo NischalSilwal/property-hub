@@ -4,6 +4,7 @@ import { Login } from '../pages/Login';
 import { Signup } from '../pages/Signup';
 import { PropertyListings } from '../pages/PropertyListings';
 import { Favorites } from '../pages/Favorites';
+import { Profile } from '../pages/Profile';
 import { Navbar } from '../components/Navbar';
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
@@ -12,7 +13,7 @@ function ProtectedRoute({ children }: { children: React.ReactNode }) {
     if (isLoading) {
         return (
             <div className="min-h-screen flex items-center justify-center">
-                <div className="animate-spin rounded-full h-12 w-12 border-4 border-purple-600 border-t-transparent"></div>
+                <div className="animate-spin rounded-full h-12 w-12 border-4 border-purple-800 border-t-transparent"></div>
             </div>
         );
     }
@@ -30,7 +31,7 @@ function PublicRoute({ children }: { children: React.ReactNode }) {
     if (isLoading) {
         return (
             <div className="min-h-screen flex items-center justify-center">
-                <div className="animate-spin rounded-full h-12 w-12 border-4 border-purple-600 border-t-transparent"></div>
+                <div className="animate-spin rounded-full h-12 w-12 border-4 border-purple-800 border-t-transparent"></div>
             </div>
         );
     }
@@ -54,6 +55,14 @@ export function AppRoutes() {
                         element={
                             <ProtectedRoute>
                                 <Favorites />
+                            </ProtectedRoute>
+                        }
+                    />
+                    <Route
+                        path="/profile"
+                        element={
+                            <ProtectedRoute>
+                                <Profile />
                             </ProtectedRoute>
                         }
                     />

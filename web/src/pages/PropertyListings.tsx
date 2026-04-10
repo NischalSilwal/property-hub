@@ -41,14 +41,14 @@ export function PropertyListings() {
                 </div>
                 {isLoading ? (
                     <div className="flex justify-center items-center py-20">
-                        <div className="animate-spin rounded-full h-12 w-12 border-4 border-purple-600 border-t-transparent"></div>
+                        <div className="animate-spin rounded-full h-12 w-12 border-4 border-purple-800 border-t-transparent"></div>
                     </div>
                 ) : error ? (
                     <div className="text-center py-20">
                         <p className="text-red-600 mb-4">{error}</p>
                         <button
                             onClick={fetchProperties}
-                            className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700"
+                            className="px-4 py-2 bg-purple-800 text-white rounded-lg hover:bg-purple-700"
                         >
                             Try Again
                         </button>

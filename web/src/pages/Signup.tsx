@@ -99,7 +99,7 @@ export function Signup() {
                         <button
                             type="submit"
                             disabled={isSubmitting}
-                            className="w-full py-3 px-4 bg-purple-600 hover:bg-purple-700 disabled:bg-purple-400 text-white font-semibold rounded-lg transition-colors"
+                            className="w-full py-3 px-4 bg-purple-800 hover:bg-purple-700 disabled:bg-purple-400 text-white font-semibold rounded-lg transition-colors"
                         >
                             {isSubmitting ? 'Creating account...' : 'Create Account'}
                         </button>
@@ -107,7 +107,7 @@ export function Signup() {
 
                     <p className="mt-6 text-center text-gray-500">
                         Already have an account?{' '}
-                        <Link to="/login" className="text-purple-600 hover:text-purple-700 font-medium">
+                        <Link to="/login" className="text-purple-800 hover:text-purple-700 font-medium">
                             Sign in
                         </Link>
                     </p>

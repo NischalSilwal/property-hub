@@ -40,14 +40,14 @@ export function Favorites() {
                 </div>
                 {isLoading ? (
                     <div className="flex justify-center items-center py-20">
-                        <div className="animate-spin rounded-full h-12 w-12 border-4 border-purple-600 border-t-transparent"></div>
+                        <div className="animate-spin rounded-full h-12 w-12 border-4 border-purple-800 border-t-transparent"></div>
                     </div>
                 ) : error ? (
                     <div className="text-center py-20">
                         <p className="text-red-600 mb-4">{error}</p>
                         <button
                             onClick={fetchFavorites}
-                            className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700"
+                            className="px-4 py-2 bg-purple-800 text-white rounded-lg hover:bg-purple-700"
                         >
                             Try Again
                         </button>
@@ -60,7 +60,7 @@ export function Favorites() {
                         <p className="text-gray-500 mb-4">No favorite properties yet.</p>
                         <Link
                             to="/properties"
-                            className="inline-block px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors"
+                            className="inline-block px-6 py-3 bg-purple-800 text-white rounded-lg hover:bg-purple-700 transition-colors"
                         >
                             Browse Properties
                         </Link>

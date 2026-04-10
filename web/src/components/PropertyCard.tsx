@@ -111,7 +111,7 @@ export function PropertyCard({ property, onFavoriteToggle }: PropertyCardProps) 
                             <button
                                 onClick={handleFavorite}
                                 className={`p-2 rounded-full backdrop-blur-sm transition-all ${isFavorited
-                                    ? 'bg-purple-600 text-white'
+                                    ? 'bg-purple-800 text-white'
                                     : 'bg-white/90 text-gray-600 hover:bg-white'
                                     }`}
                             >
