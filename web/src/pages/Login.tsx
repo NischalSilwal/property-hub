@@ -3,23 +3,19 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { useAuth } from '../store/AuthContext';
 import { useToast } from '../components/CustomToast';
-
-interface LoginFormData {
-    email: string;
-    password: string;
-}
+import type { LoginInput } from '../interfaces';
 
 export function Login() {
     const [showPassword, setShowPassword] = useState(false);
     const { login } = useAuth();
     const navigate = useNavigate();
     const { showToast } = useToast();
-    const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<LoginFormData>();
+    const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<LoginInput>();
 
-    const onSubmit = async (data: LoginFormData) => {
+    const onSubmit = async (data: LoginInput) => {
         try {
             await login(data.email, data.password);
-            navigate('/dashboard');
+            navigate('/properties');
         } catch (err) {
             showToast(err instanceof Error ? err.message : 'Login failed', 'error');
         }
@@ -37,12 +33,12 @@ export function Login() {
                     <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
                         <div>
                             <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                                Email Address
+                                Email Address *
                             </label>
                             <input
                                 type="email"
                                 id="email"
-                                placeholder="your@email.com"
+                                placeholder="Enter your email"
                                 className={`w-full px-4 py-3 border rounded-lg outline-none transition-all ${errors.email ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-2 focus:ring-purple-500 focus:border-purple-500'}`}
                                 {...register('email', { required: 'Email is required' })}
                             />
@@ -51,7 +47,7 @@ export function Login() {
 
                         <div>
                             <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
-                                Password
+                                Password *
                             </label>
                             <div className="relative">
                                 <input
@@ -90,7 +86,7 @@ export function Login() {
                         </button>
                     </form>
 
-                    <p className="mt-6 text-center text-gray-500">
+                    <p className="mt-6 text-center text-gray-500 font-medium text-sm">
                         Don't have an account?{' '}
                         <Link to="/signup" className="text-purple-800 hover:text-purple-700 font-medium">
                             Sign up
