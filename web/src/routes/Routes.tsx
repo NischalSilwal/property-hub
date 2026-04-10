@@ -2,6 +2,8 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from '../store/AuthContext';
 import { Login } from '../pages/Login';
 import { Signup } from '../pages/Signup';
+import { PropertyListings } from '../pages/PropertyListings';
+import { Navbar } from '../components/Navbar';
 
 function PublicRoute({ children }: { children: React.ReactNode }) {
     const { isAuthenticated, isLoading } = useAuth();
@@ -15,7 +17,7 @@ function PublicRoute({ children }: { children: React.ReactNode }) {
     }
 
     if (isAuthenticated) {
-        return <Navigate to="/dashboard" replace />;
+        return <Navigate to="/properties" replace />;
     }
 
     return <>{children}</>;
@@ -25,7 +27,9 @@ export function AppRoutes() {
     return (
         <AuthProvider>
             <BrowserRouter>
+                <Navbar />
                 <Routes>
+                    <Route path="/properties" element={<PropertyListings />} />
                     <Route
                         path="/login"
                         element={
@@ -42,8 +46,8 @@ export function AppRoutes() {
                             </PublicRoute>
                         }
                     />
-                    <Route path="/" element={<Navigate to="/login" replace />} />
-                    <Route path="*" element={<Navigate to="/login" replace />} />
+                    <Route path="/" element={<Navigate to="/properties" replace />} />
+                    <Route path="*" element={<Navigate to="/properties" replace />} />
                 </Routes>
             </BrowserRouter>
         </AuthProvider>
