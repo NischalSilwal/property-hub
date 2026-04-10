@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   mysql:
     image: mysql:8.0
@@ -7,7 +5,7 @@ services:
     restart: unless-stopped
     environment:
       MYSQL_ROOT_PASSWORD: rootpassword
-      MYSQL_DATABASE: property_hub
+      MYSQL_DATABASE: property_hub_db
       MYSQL_USER: propertyhub_user
       MYSQL_PASSWORD: propertyhub@12345
     ports:
