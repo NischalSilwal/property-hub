@@ -1,4 +1,4 @@
-import type { AuthResponse, LoginInput, RegisterInput, RegisterResponse, User } from '../interfaces/auth';
+import type { AuthResponse, LoginInput, RegisterInput, RegisterResponse, User } from '../interfaces';
 import { api } from './api';
 import { tokenService } from './tokenService';
 

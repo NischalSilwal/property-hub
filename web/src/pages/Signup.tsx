@@ -3,16 +3,16 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { useAuth } from '../store/AuthContext';
 import { useToast } from '../components/CustomToast';
-import type { SignupFormData } from '../interfaces/auth';
+import type { RegisterInput } from '../interfaces';
 
 export function Signup() {
     const [showPassword, setShowPassword] = useState(false);
     const { register: registerUser } = useAuth();
     const navigate = useNavigate();
     const { showToast } = useToast();
-    const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<SignupFormData>();
+    const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<RegisterInput>();
 
-    const onSubmit = async (data: SignupFormData) => {
+    const onSubmit = async (data: RegisterInput) => {
         try {
             await registerUser(data.name, data.email, data.password);
             showToast('Registration successful', 'success');
