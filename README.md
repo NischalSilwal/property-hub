@@ -28,7 +28,6 @@ A full-stack real estate property management web application built with modern t
 - User authentication (register/login)
 - Property listing and management
 - Property details with images
-- Search and filter properties
 - Responsive design
 
 ## Project Structure
