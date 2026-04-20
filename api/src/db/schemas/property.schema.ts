@@ -3,6 +3,7 @@ import { sql } from 'drizzle-orm';
 
 export const properties = mysqlTable('properties', {
     id: int('id').primaryKey().autoincrement(),
+    userId: int('user_id').notNull(),
     title: varchar('title', { length: 255 }).notNull(),
     location: varchar('location', { length: 255 }).notNull(),
     price: decimal('price', { precision: 15, scale: 2 }).notNull(),

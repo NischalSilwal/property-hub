@@ -1,8 +1,20 @@
 import { Request, Response, NextFunction } from 'express';
 import { propertyRepository } from '../repositories';
 import { AuthError } from '../services/authService';
+import { CreatePropertyInput } from '../repositories/interfaces';
 
 export class PropertyController {
+    create = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+        try {
+            const userId = req.user!.id;
+            const propertyData: CreatePropertyInput = req.body;
+            const propertyId = await propertyRepository.create(propertyData, userId);
+            res.status(201).json({ id: propertyId, message: 'Property created successfully' });
+        } catch (error) {
+            next(error);
+        }
+    };
+
     getAll = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
         try {
             const userId = req.user?.id;

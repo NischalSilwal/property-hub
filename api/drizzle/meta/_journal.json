@@ -8,6 +8,13 @@
       "when": 1775827694016,
       "tag": "0000_cuddly_true_believers",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1776702387544,
+      "tag": "0001_fancy_franklin_storm",
+      "breakpoints": true
     }
   ]
 }

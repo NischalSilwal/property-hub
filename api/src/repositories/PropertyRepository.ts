@@ -1,6 +1,6 @@
 import { eq, count, desc, and } from 'drizzle-orm';
 import { db, pool, properties, likes, favorites } from '../db';
-import { IPropertyRepository, PropertyRow } from './interfaces';
+import { IPropertyRepository, PropertyRow, CreatePropertyInput } from './interfaces';
 
 export class PropertyRepository implements IPropertyRepository {
     async findById(id: number): Promise<PropertyRow | null> {
@@ -112,6 +112,25 @@ export class PropertyRepository implements IPropertyRepository {
         );
         const deleteResult = result as { affectedRows: number };
         return deleteResult.affectedRows > 0;
+    }
+
+    async create(data: CreatePropertyInput, userId: number): Promise<number> {
+        const [result] = await pool.execute(
+            `INSERT INTO properties (title, location, price, bedrooms, bathrooms, sqft, description, user_id) 
+             VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+            [
+                data.title,
+                data.location,
+                data.price,
+                data.bedrooms ?? null,
+                data.bathrooms ?? null,
+                data.sqft ?? null,
+                data.description ?? null,
+                userId,
+            ]
+        );
+        const insertResult = result as { insertId: number };
+        return insertResult.insertId;
     }
 }
 
