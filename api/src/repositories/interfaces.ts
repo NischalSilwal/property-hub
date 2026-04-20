@@ -33,12 +33,23 @@ export interface PropertyRow {
     updatedAt: Date;
 }
 
+export interface CreatePropertyInput {
+    title: string;
+    location: string;
+    price: string;
+    bedrooms?: number;
+    bathrooms?: number;
+    sqft?: number;
+    description?: string;
+}
+
 export interface IPropertyRepository {
     findById(id: number): Promise<PropertyRow | null>;
     findByIdWithCounts(id: number, userId?: number): Promise<PropertyRow | null>;
     findAll(): Promise<PropertyRow[]>;
     findAllWithCounts(userId?: number): Promise<PropertyRow[]>;
     delete(id: number): Promise<boolean>;
+    create(data: CreatePropertyInput, userId: number): Promise<number>;
 }
 
 export interface FavoriteRow {
